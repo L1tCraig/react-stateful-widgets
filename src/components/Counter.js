@@ -46,32 +46,37 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState }from 'react'; /* STEP 0 >>>this imports a function called use state that will store and allow updating of a single
+variable. can store strings numbers booleans and even code if you get down and nerdy!!!*/
 
 export default function Counter() {
-  /* STEP 1 */
+  /* STEP 1 creates a var called count that will = the setcount results*/
+  const [count, setCount] = useState(0)
 
   const increment = () => {
-    /* STEP 4 */
+    /* STEP 4 will update useState to be count+1*/
+    setCount(count + 1)
   };
   const decrement = () => {
-    /* STEP 5 */
+    /* STEP 5 decrease count by 1*/
+    setCount(count - 1)
   };
   const reset = () => {
-    /* STEP 6 */
+    /* STEP 6 nothing fancy just setting the state to 0*/
+    setCount(0)
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: (count % 2 === 0 ? 'royalBlue' : 'crimson'), /* STEP 2 replaced the card coded blue with a logic path so that if the remainder of count divided by 2 is 0 then it is even and will be blue otherwise since odd numbers have .5 remaining when dividing by 2 it will be odd and return crimson*/
   };
 
   return (
     <div className='widget-counter container'>
       <h2>Counter</h2>
       <div id='count' style={style}>
-        Number 0 is even {/* STEP 3 */}
+        Number {count} is {(count % 2 === 0 ? 'even' : 'odd')} {/* STEP 3  replaced the hard coded words with count and an even odd logic check on count to say either even or odd*/}
       </div>
       <div>
         <button id='increment' onClick={increment}>Increment</button>
