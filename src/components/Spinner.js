@@ -37,23 +37,27 @@ STEP 4:
   Do you remember the operator we use to do "not"?
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from 'react'; /* STEP 0 add the useState function from react */
 
 export default function Spinner() {
-/* STEP 1 */
+  const [spinnerOn, setSpinnerOn] = useState(false)
+/* STEP 1 set statehook to create a const spinnerOn that will be whatever setSpinnerOn is */
 
   const toggleSpinner = () => {
-  /* STEP 4 */
+    setSpinnerOn(!spinnerOn)
+    let spinner = document.querySelector('.spinner')
+    {(spinnerOn === false ? spinner.style.display = 'none' : spinner.style.display = 'flex')}
+  /* STEP 4 when called spinner on will change to false if true, true if false, set the target of the spinner to allow the falsey statement to check if spinner is off if so it will display none if so will set display of the spinner to flex */
   };
 
   return (
     <div className='widget-spinner container'>
       <h2>Spinner</h2>
       {
-        true && <div id='spinner' className='spinner'>--+--</div> /* STEP 2 */
+        {spinnerOn} && <div id='spinner' className='spinner'>--+--</div> /* STEP 2 changed the hardcoded true to the const spinnerOn */
       }
       <button id='toggleSpinner' onClick={toggleSpinner}>
-        Hide Spinner {/* STEP 3 */}
+        {(spinnerOn === true ? 'Show' : 'Hide')} {/* STEP 3 used a ternary to change the text to either show or hide based on the state of the spinner */}
       </button>
     </div>
   );
